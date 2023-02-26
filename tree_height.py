@@ -18,8 +18,10 @@ def compute_height(n, parents):
 def main():
     #
     text = int(input())
+    print(text)
     nodes= [text]
     nodes = input().split()
+    print(nodes[1])
     max_height = 0
     height=0
     for cnt in range(0,text):
