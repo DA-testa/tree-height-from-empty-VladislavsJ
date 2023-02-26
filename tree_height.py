@@ -17,7 +17,7 @@ def compute_height(n, parents):
 
 def main():
     #
-    text = int(input())
+    text = input()
     print(text)
     nodes= [text]
     nodes = input().split()
