@@ -22,7 +22,7 @@ def main():
     nodes = input().split()
     max_height = 0
     height=0
-    for cnt in range(0,int(float(text))):
+    for cnt in range(0,text):
         height = compute_height(cnt,nodes)
         if max_height<height:
             max_height=height
