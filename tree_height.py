@@ -7,11 +7,34 @@ import threading
 def compute_height(n, parents):
     # Write this function
     max_height = 0
+    if int(parents[int(n)])==-1:
+        return(1)
+    else: return compute_height(parents[int(n)],parents)+1
     # Your code here
     return max_height
 
 
+
 def main():
+    #
+    text = input()
+    nodes= [text]
+    nodes = input().split()
+    max_height = 0
+    height=0
+    for cnt in range(0,int(text)):
+        height = compute_height(cnt,nodes)
+        if max_height<height:
+            max_height=height
+    print(max_height)
+    #compute_height(text,nodes)
+    #if text[0] == 'F':
+     #   x = open(text1, "r")
+     #   text1 = list(x.read())
+    #
+    
+    #           
+    # Printing answer, write your code here
     # implement input form keyboard and from files
     
     # let user input file name to use, don't allow file names with letter a
