@@ -17,11 +17,18 @@ def compute_height(n, parents):
 
 def main():
     #
-    text = input()
-    print(text)
-    nodes= [text]
-    nodes = input().split()
-    print(nodes[1])
+    file_terminal = input()
+    if file_terminal[0] == 'F':
+        text = input()
+        x = open(text, "r")
+        text1 = (x.read()).split("\n")
+        text = int(text1[0])
+        nodes=text1[1].split()
+        
+    else:       
+        text = int(input())
+        nodes= [text]
+        nodes = input().split()
     max_height = 0
     height=0
     for cnt in range(0,text):
@@ -30,9 +37,7 @@ def main():
             max_height=height
     print(max_height)
     #compute_height(text,nodes)
-    #if text[0] == 'F':
-     #   x = open(text1, "r")
-     #   text1 = list(x.read())
+   
     #
     
     #           
@@ -45,11 +50,7 @@ def main():
     # input number of elements
     # input values in one variable, separate with space, split these values in an array
     # call the function and output it's result
-
-
-# In Python, the default limit on recursion depth is rather low,
-# so raise it here for this problem. Note that to take advantage
-# of bigger stack, we have to launch the computation in a new thread.
 sys.setrecursionlimit(10**7)  # max depth of recursion
 threading.stack_size(2**27)   # new thread will get stack of such size
 threading.Thread(target=main).start()
+
