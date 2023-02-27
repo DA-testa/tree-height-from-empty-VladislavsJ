@@ -35,17 +35,15 @@ def main():
     file_terminal = input()
     FileContains_a=False
     if file_terminal[0] == 'F':
-        FileLocation = input()
-        
-        file_name = FileLocation.split("/")
-        if "a" in file_name[-1]:
+        file_name = input()
+        # let user input file name to use, don't allow file names with letter a
+        if "a" in file_name:
             print("file name have letter a")
             FileContains_a=True
             return
-        # FileLocation = path + /fileName
-        #for github + /test/.
-        text1 = (open("/test/" + FileLocation, "r").read()).split("\n")
-        # don't allow file names with letter a
+        #
+        text1 = (open( sys.path[0]+ "/test/" + file_name, "r").read()).split("\n")
+       
         
         nodeCnt = int(text1[0]) 
         parents=text1[1].split()
