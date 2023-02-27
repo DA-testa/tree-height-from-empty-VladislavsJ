@@ -44,7 +44,7 @@ def main():
             return
         # FileLocation = path + /fileName
         #for github + /test/.
-        text1 = (open("/test." + FileLocation, "r").read()).split("\n")
+        text1 = (open("/test/" + FileLocation, "r").read()).split("\n")
         # don't allow file names with letter a
         
         nodeCnt = int(text1[0]) 
