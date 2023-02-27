@@ -3,15 +3,60 @@
 import sys
 import threading
 
-
-def compute_height(n, parents):
+def compute_height(n,parents):
     # Write this function
+    if n != len(parents):
+        print("size \"n\" don't match with nodes amount ")
+        return -1
+    
+    #recursion don't work it became too deep for solving, 
+    #I have to use array to save heights of previous nodes
+    heights = [0]*n
+    # if nodeNum<cnt: mean that this cnt number already calculated, and I can take it from array nodeNum
+    # if not, go to next branch, until -1 or nodeNum<cnt
     max_height = 0
-    # Your code here
+    for cnt in range(len(parents)):
+        height=0
+        nodeNum=int(cnt)
+        while int(parents[nodeNum]) != -1:
+                if nodeNum<cnt:
+                    height += heights[nodeNum]
+                    break
+                else:    
+                    nodeNum = int(parents[nodeNum])
+                    height+=1
+        heights[int(cnt)]=height
+        if height>max_height:
+            max_height=height+1
+
     return max_height
 
-
 def main():
+    file_terminal = input()
+    FileContains_a=False
+    if file_terminal[0] == 'F':
+        file_name = input()
+        # let user input file name to use, don't allow file names with letter a
+        if "a" in file_name:
+            print("file name have letter a")
+            FileContains_a=True
+            return
+        #
+        text1 = (open( sys.path[0]+ "/test/" + file_name, "r").read()).split("\n")
+       
+        
+        nodeCnt = int(text1[0]) 
+        parents=text1[1].split()
+        
+    elif file_terminal[0] == 'I':     
+        nodeCnt = int(input())
+        #parents= [text]
+        parents = input().split()
+    if not FileContains_a:
+        height = compute_height(nodeCnt,parents)
+        print(height)
+
+    # Printing answer, write your code here
     # implement input form keyboard and from files
     
     # let user input file name to use, don't allow file names with letter a
@@ -21,10 +66,6 @@ def main():
     # input values in one variable, separate with space, split these values in an array
     # call the function and output it's result
 
-
-# In Python, the default limit on recursion depth is rather low,
-# so raise it here for this problem. Note that to take advantage
-# of bigger stack, we have to launch the computation in a new thread.
 sys.setrecursionlimit(10**7)  # max depth of recursion
 threading.stack_size(2**27)   # new thread will get stack of such size
 threading.Thread(target=main).start()
